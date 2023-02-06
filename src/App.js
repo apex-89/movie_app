@@ -1,25 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import Search from './components/search';
+import DisplayMovie from './components/display_movie';
 
 function App() {
+
+  const [searchedMovie, setSearchedMovie] = useState(null);
+  console.log({searchedMovie});
+
+  const logString = (string) => {
+    console.log("string is in APP", string);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Search setSearchedMovie={setSearchedMovie} user="Chase" logString={logString}/>
+      <DisplayMovie searchedMovie={searchedMovie}/>
     </div>
   );
-}
+};
 
 export default App;
