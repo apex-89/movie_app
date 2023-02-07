@@ -3,9 +3,15 @@ require('dotenv').config()
 const axios = require('axios');
 const cors = require('cors')
 const app = express();
+const path = require('path');
 
 // console.log(process.env.API_KEY);
 app.use(cors('*/*'))
+
+// SERVE THE REACT APP FROM SERVER
+
+app.use(express.static(path.join(__dirname, 'build')));
+
 app.get('/get_movie/:movieString', async (req, res) => {
     console.log(req.params.movieString);
 
@@ -15,6 +21,8 @@ app.get('/get_movie/:movieString', async (req, res) => {
     console.log(data);
     res.json(data);
 });
+// SERV THE RACT APP FROM SERVER 
+
 
 
 app.listen(5000, () => {
